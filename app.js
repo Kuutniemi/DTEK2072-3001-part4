@@ -8,7 +8,7 @@ const middleware = require("./utils/middleware");
 const BlogsRouter = require("./controllers/blogs");
 
 mongoose
-  .connect(config.MONGOURI)
+  .connect(config.MONGODB_URI)
   .then(() => {
     logger.info("Connected to MongoDB");
   })

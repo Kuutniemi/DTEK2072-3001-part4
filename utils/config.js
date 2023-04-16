@@ -1,9 +1,13 @@
 require("dotenv").config();
 
-let PORT = process.env.PORT;
-let MONGOURI = process.env.MONGO;
+const PORT = process.env.PORT;
+
+const MONGODB_URI =
+  process.env.NODE_ENV === "test" ? process.env.TEST_MONGO : process.env.MONGO;
+
+console.log(`Connecting to ${MONGODB_URI}...`);
 
 module.exports = {
-  MONGOURI,
+  MONGODB_URI,
   PORT,
 };
