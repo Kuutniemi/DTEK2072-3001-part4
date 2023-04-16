@@ -4,6 +4,10 @@ const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
 
+app.use(morgan("tiny"));
+app.use(express.json());
+app.use(cors());
+
 const blogSchema = mongoose.Schema({
   title: String,
   author: String,
