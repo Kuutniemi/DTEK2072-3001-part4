@@ -22,4 +22,27 @@ BlogsRouter.post("/", (request, response) => {
   });
 });
 
+BlogsRouter.delete("/:id", (request, response) => {
+  Blog.findByIdAndRemove(request.params.id).then((result) => {
+    response.status(204).end();
+  });
+});
+
+BlogsRouter.put("/:id", (request, response) => {
+  const { title, author, url, likes } = request.body;
+
+  const blog = {
+    title,
+    author,
+    url,
+    likes,
+  };
+
+  Blog.findByIdAndUpdate(request.params.id, blog, { new: true }).then(
+    (updatedBlog) => {
+      response.json(updatedBlog);
+    }
+  );
+});
+
 module.exports = BlogsRouter;

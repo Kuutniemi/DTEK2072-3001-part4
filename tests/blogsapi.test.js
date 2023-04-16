@@ -31,6 +31,24 @@ test("Test adding blogs work and the amount of blogs increases", async () => {
   expect(blogss.length === length + 1);
 });
 
+test("Deleting blogs works and the amount of blogs decreases", async () => {
+  const blogs = await api.get("/api/blogs");
+  let length = blogs.length;
+
+  let id = blogs._body[0].id;
+
+  //   console.log("ID: ", blogs._body[0].id);
+
+  await api.delete(`/api/blogs/${id}`).expect(204);
+  const blogss = await api.get("/api/blogs");
+  expect(blogss.length === length - 1);
+
+  // Check that not of Bloggs has id of deleted blog
+  blogss._body.forEach((blog) => {
+    expect(blog.id).not.toBe(id);
+  });
+});
+
 afterAll(() => {
   mongoose.connection.close();
 });
