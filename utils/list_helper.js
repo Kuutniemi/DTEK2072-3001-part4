@@ -1,4 +1,12 @@
-// Määrittele ensin funktio dummy, joka saa parametrikseen taulukollisen blogeja ja palauttaa aina luvun 1. Tiedoston list_helper.js sisällöksi siis tulee tässä vaiheessa:
+const User = require("../models/user");
+
+// ...
+
+const usersInDb = async () => {
+  const users = await User.find({});
+  return users.map((u) => u.toJSON());
+};
+
 const dummy = (blogs) => {
   return 1;
 };
@@ -10,4 +18,5 @@ const totalLikes = (blogs) => {
 module.exports = {
   dummy,
   totalLikes,
+  usersInDb,
 };

@@ -6,6 +6,7 @@ const logger = require("./utils/logger");
 const config = require("./utils/config");
 const middleware = require("./utils/middleware");
 const BlogsRouter = require("./controllers/blogs");
+const UserRouter = require("./controllers/users");
 
 mongoose
   .connect(config.MONGODB_URI)
@@ -27,6 +28,7 @@ app.get("/test", (request, response) => {
 });
 
 app.use("/api/blogs", BlogsRouter);
+app.use("/api/users", UserRouter);
 
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);
