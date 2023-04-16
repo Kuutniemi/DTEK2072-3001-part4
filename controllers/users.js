@@ -4,6 +4,7 @@ const User = require("../models/user");
 const Blog = require("../models/blog");
 
 UserRouter.post("/", async (request, response) => {
+  // Should validate that username does not exists but was not required in the exercise
   const { username, name, password } = request.body;
 
   const saltRounds = 10;
